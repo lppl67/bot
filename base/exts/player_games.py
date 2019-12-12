@@ -258,11 +258,12 @@ class PlayerCog(BaseCog):
         )
 
     async def _win_message(self, channel: discord.TextChannel, winner: discord.Member, amount: int):
+        og_amount = amount
         amount = round(amount * 1.9)
         await self.database.execute(self.sql_cache.read("add_currency.sql"), winner.id, amount)
         winner_row = await self.database.fetchrow(self.sql_cache.read("get_member.sql"), winner.id)
         await show_update(self, winner, amount, winner_row, True)
-        await self.database.execute(self.sql_cache.read("add_currency.sql"), self.bot.user.id, round(amount * 0.05))
+        await self.database.execute(self.sql_cache.read("add_currency.sql"), self.bot.user.id, round(og_amount * 0.1))
         await channel.send(embed=Embed(description=f"{winner.mention} has won **{self.plur_simple(amount, 'token')}**"))
 
 
