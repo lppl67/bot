@@ -1,0 +1,33 @@
+[build-system]
+requires        = ["poetry>=0.12"]
+build-backend   = "poetry.masonry.api"
+
+[tool.poetry]
+name            = "base"
+authors         = ["Zach <Zach#2679>"]
+readme          = "README.md"
+version         = "0.0.1"
+
+
+[tool.poetry.dependencies]
+python          = "~3.8"
+
+asyncpg         = "~0.20"
+async_timeout   = "~3.0"
+dacite          = "~1.1"
+"discord.py"    = "~1.2"
+nltk            = "~3.4"
+pyyaml          = "~5.2"
+uvloop          = { version = "~.14", optional = true }
+
+#git dependencies
+libneko         = { git = "https://gitlab.com/Tmpod/libneko.git", branch = "master"}
+
+[tool.poetry.scripts]
+base            = "base.cli:main"
+
+
+[tool.black]
+line-length     = 120
+target-version  = ["py38"]
+include         = ".*py$"

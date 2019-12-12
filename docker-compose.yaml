@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  # Postgres runner
+  db:
+    image: postgres:12-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./.postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432
+    container_name: "pygear-db"
+
+  # Client
+  bot:
+    image: 152711445168.dkr.ecr.us-east-1.amazonaws.com/pygear
+    restart: always
+    depends_on:
+      - db
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - .:/config
+    links:
+      - db
+    container_name: "pygear-bot"

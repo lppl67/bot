@@ -1,0 +1,12 @@
+config.yaml
+.postgres-data/
+.venv/
+__pycache__/
+*.pyc
+.idea/
+*.iml
+.vscode/
+.settings/
+.env
+poetry.lock
+*.egg-info

@@ -1,0 +1,7 @@
+# Stop docker changing ownership of my postgres volume.
+.postgres_data/
+.venv/
+*.egg-info
+docker-compose.yaml
+Dockerfile
+.env/

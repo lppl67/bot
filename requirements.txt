@@ -1,0 +1,7 @@
+async_timeout
+asyncpg
+aiofiles
+dacite
+discord.py
+pyyaml
+git+https://gitlab.com/Tmpod/libneko.git
