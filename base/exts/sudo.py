@@ -23,7 +23,7 @@ class SudoCog(base_cog.BaseCog):
         await self.bot.wait_until_ready()
 
         try:
-            async with aiofiles.open("REBOOT", "r") as fp:
+            async with aiofiles.open("src/REBOOT", "r") as fp:
                 reboot_instructions = (await fp.read()).strip().split("\n")
 
             message = await self.bot.get_channel(int(reboot_instructions[1])).fetch_message(int(reboot_instructions[2]))
@@ -83,7 +83,7 @@ class SudoCog(base_cog.BaseCog):
         embed = Embed(description=f"**{self.bot.user.name}** is restarting...", colour=discord.Colour.gold())
         msg = await ctx.send(embed=embed)
 
-        async with aiofiles.open("/config/REBOOT", "w") as fp:
+        async with aiofiles.open("/src/REBOOT", "w") as fp:
             await fp.write(f"{restart_time}\n{ctx.channel.id}\n{msg.id}")
 
         await self.bot.logout()

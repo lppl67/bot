@@ -220,7 +220,7 @@ class BettorCog(BaseCog):
                 round(raffle["price"] * raffle["tickets"] * 0.05)
             )
 
-        async with aiofiles.open("raffles.json", "w") as fp:
+        async with aiofiles.open("src/raffles.json", "w") as fp:
             await fp.write(json.dumps(self.bot.raffles))
 
         await asyncio.sleep(90)

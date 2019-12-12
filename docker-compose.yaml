@@ -11,18 +11,18 @@ services:
       - ./.postgres-data:/var/lib/postgresql/data
     ports:
       - 5432
-    container_name: "pygear-db"
+    container_name: "base-db"
 
   # Client
   bot:
-    image: 152711445168.dkr.ecr.us-east-1.amazonaws.com/pygear
+    build: .
     restart: always
     depends_on:
       - db
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - .:/config
+      - .:/src
     links:
       - db
-    container_name: "pygear-bot"
+    container_name: "base-bot"

@@ -35,7 +35,7 @@ class Admin(BaseCog):
         raffle_number = random.choice(list(set(range(1_000, 9_999)) - set(self.bot.raffles.keys())))
         self.bot.raffles.update({str(raffle_number): {"price": price, "tickets": tickets, "members": list()}})
 
-        async with aiofiles.open("raffles.json", "w") as fp:
+        async with aiofiles.open("src/raffles.json", "w") as fp:
             await fp.write(json.dumps(self.bot.raffles))
 
         await ctx.guild.create_role(name=str(raffle_number))
